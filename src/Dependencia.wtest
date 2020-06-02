@@ -1,0 +1,76 @@
+import OtrosRodados.*
+import Trafic.*
+import dependencia.*
+import Pedidos.*
+
+test "dependencia deportes" {
+	const cachito = new ChevroletCorsa()
+	cachito.nuevoColor("Rojo")	
+	
+	const corsa1 = new ChevroletCorsa()
+	corsa1.nuevoColor("Azul")
+	
+	const corsa2 = new ChevroletCorsa()
+	corsa1.nuevoColor("Verde")
+	
+	const kwid1 = new RenaultKwid()
+	
+	const especial = new AutoEspecial()
+	especial.capacidad(5)
+	especial.velocidadMax(160)
+	especial.peso(1500)
+	especial.color("Beige")
+	
+	const depDeportes = new Dependencia()
+	depDeportes.cantidadEmpleados(45)
+	
+	depDeportes.agregarAFlota(cachito)
+	depDeportes.agregarAFlota(corsa1)
+	depDeportes.agregarAFlota(corsa2)
+	depDeportes.agregarAFlota(kwid1)
+	depDeportes.agregarAFlota(especial)
+		
+	assert.equals(6750, depDeportes.pesoTotalFlota())
+	assert.equals(true, depDeportes. estaBienEquipada())
+	assert.equals(4, depDeportes.capacidadTotalEnColor("Verde"))
+	assert.equals("Beige", depDeportes.colorDelRodadoMasRapido())
+	assert.equals(25, depDeportes.capacidadFaltante())
+	assert.equals(true, depDeportes.esGrande())
+
+}
+
+test "dependencia cultural" {	
+	
+	const cachito = new ChevroletCorsa()
+	cachito.nuevoColor("Rojo")	
+	
+	const kwid1 = new RenaultKwid()
+	
+	const kwid2= new RenaultKwid()
+	kwid1.gasCambiar()
+	
+	const kwid3= new RenaultKwid()
+	
+	
+	trafic.cambiarInterior(interiorPopular)
+	trafic.cambiarMotor(motorBataton)
+	
+	const depCultural = new Dependencia()
+	depCultural.cantidadEmpleados(31)
+	
+	depCultural.agregarAFlota(cachito)
+	depCultural.agregarAFlota(trafic)
+	depCultural.agregarAFlota(kwid1)
+	depCultural.agregarAFlota(kwid2)
+	depCultural.agregarAFlota(kwid3)
+	
+	
+	assert.equals(10700, depCultural.pesoTotalFlota())
+	assert.equals(false, depCultural. estaBienEquipada())
+	assert.equals(0, depCultural.capacidadTotalEnColor("Verde"))
+	assert.equals("Rojo", depCultural.colorDelRodadoMasRapido())
+	assert.equals(5, depCultural.capacidadFaltante())
+	assert.equals(false, depCultural.esGrande())
+}
+
+

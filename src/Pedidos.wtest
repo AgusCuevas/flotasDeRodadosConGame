@@ -1,0 +1,55 @@
+import OtrosRodados.*
+import Trafic.*
+import dependencia.*
+import Pedidos.*
+
+test "Pedidos" {	
+	const  pedido1 = new Pedidos()
+	const cachito = new ChevroletCorsa()
+	cachito.nuevoColor("Rojo")
+	
+	pedido1.distanciaKm(960)
+	pedido1.tiempoMaximo(8)
+	pedido1.cantidadDePasajeros(4)
+	pedido1.agregarColoresIncomp("Azul")
+	pedido1.agregarColoresIncomp("Negro")
+	
+	assert.equals(120, pedido1.velocidadRequerida())
+	assert.equals(false, pedido1.sonIncompatibles(cachito))
+	assert.equals(true, pedido1.autoPuedeSatisfacer(cachito))
+}
+
+
+
+test "Pedidos2" {	
+	const pedido2 = new Pedidos()
+	const cachito = new ChevroletCorsa()
+	cachito.nuevoColor("Rojo")
+	
+	pedido2.distanciaKm(960)
+	pedido2.tiempoMaximo(8)
+	pedido2.cantidadDePasajeros(4)
+	pedido2.agregarColoresIncomp("Azul")
+	pedido2.agregarColoresIncomp("Negro")
+	pedido2.agregarColoresIncomp("Rojo")
+	
+	assert.equals(120, pedido2.velocidadRequerida())
+	assert.equals(true, pedido2.sonIncompatibles(cachito))
+	assert.equals(false, pedido2.autoPuedeSatisfacer(cachito))
+}
+
+test "Pedidos3" {	
+	const pedido3 = new Pedidos()
+	const cachito = new ChevroletCorsa()
+	cachito.nuevoColor("Rojo")
+	
+	pedido3.distanciaKm(960)
+	pedido3.tiempoMaximo(6)
+	pedido3.cantidadDePasajeros(4)
+	pedido3.agregarColoresIncomp("Azul")
+	pedido3.agregarColoresIncomp("Negro")
+	
+	assert.equals(160, pedido3.velocidadRequerida())
+	assert.equals(false, pedido3.sonIncompatibles(cachito))
+	assert.equals(false, pedido3.autoPuedeSatisfacer(cachito))
+}
