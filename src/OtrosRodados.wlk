@@ -20,14 +20,6 @@ class ChevroletCorsa {
 		return posicionesPorLasQuePaso.map({g => g.x()})
 	}
 	
-	method moveteA(unaPosicion){
-		self.position(unaPosicion)
-	}
-	
-	method ultimaPosicion(){
-		posicionesPorLasQuePaso.last()
-	}
-	
 	method pasoPorFila(posicion){
 		return self.filasPorLasQuePaso().contains(posicion)
 	}
