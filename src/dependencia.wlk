@@ -1,9 +1,10 @@
 import Pedidos.*
+import OtrosRodados.*
 
 class Dependencia {
 	var empleados 
-	var rodados = []
-	var pedidosRegistro = []
+	var property rodados = []
+	var property pedidosRegistro = []
 	 
 	method cantidadEmpleados(cantidad){empleados = cantidad}
 	
@@ -48,15 +49,26 @@ class Dependencia {
 		pedidosRegistro.add(pedido)
 	}
 	
-	/*method noSePuedeHacerPedido(){
-		return pedidosRegistro.all({g => g.Pedido().autoPuedeSatisfacer(rodados)})
-	}*/
+// ETAPA 3
 	
-	/*method esColorIncompatible(color){
-		return pedidosRegistro.all({g => g.Pedido().sonIncompatibles(rodados)})
-	}*/
+	method totalDePasajeronEnPedidos(){
+		return pedidosRegistro.sum({g => g.cantidadDePasajeros()})
+	}
 	
-	/*method relajarTodos(){
-		return pedidosRegistro.map({ g => g.Pedidos().relejar()})
-	}*/
+	method puedeSatisfacer(pedido){
+		return rodados.any({ g =>  pedido.autoPuedeSatisfacer(g)})
+	}
+	
+	method noPuedeSatisfacer(){
+		return pedidosRegistro.filter({ g => not self.puedeSatisfacer(g)})
+	}
+	
+	method colorIncompatible(color){
+		return pedidosRegistro.any({ g => g.esColorIncompatible(color)})
+	}
+	
+	method relajarTodos(){
+		return pedidosRegistro.map({ g => g.tiempoMaximo() + 1})
+	}
+	
 }

@@ -71,6 +71,37 @@ test "dependencia cultural" {
 	assert.equals("Rojo", depCultural.colorDelRodadoMasRapido())
 	assert.equals(5, depCultural.capacidadFaltante())
 	assert.equals(false, depCultural.esGrande())
+	
+	
+	const  pedido1 = new Pedidos()
+	pedido1.distanciaKm(960)
+	pedido1.tiempoMaximo(8)
+	pedido1.cantidadDePasajeros(4)
+	pedido1.agregarColoresIncompatibles("Azul")
+	pedido1.agregarColoresIncompatibles("Negro")
+	
+	const  pedido2 = new Pedidos()
+	pedido2.distanciaKm(645)
+	pedido2.tiempoMaximo(8)
+	pedido2.cantidadDePasajeros(3)
+	pedido2.agregarColoresIncompatibles("Azul")
+	pedido2.agregarColoresIncompatibles("Negro")
+	pedido2.agregarColoresIncompatibles("Rojo")
+	
+	const  pedido3 = new Pedidos()
+	pedido3.distanciaKm(800)
+	pedido3.tiempoMaximo(6)
+	pedido3.cantidadDePasajeros(5)
+	pedido3.agregarColoresIncompatibles("Azul")
+	pedido3.agregarColoresIncompatibles("Rojo")
+	
+	depCultural.agregarPedidos(pedido1)
+	depCultural.agregarPedidos(pedido2)
+	depCultural.agregarPedidos(pedido3)
+	assert.equals(12, depCultural.totalDePasajeronEnPedidos())
+	assert.equals([pedido2, pedido3], depCultural.noPuedeSatisfacer())
+	assert.equals(true, depCultural.colorIncompatible("Negro"))
+	assert.equals([9, 9, 7], depCultural.relajarTodos())
 }
 
 

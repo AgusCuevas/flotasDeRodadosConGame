@@ -1,0 +1,19 @@
+import wollok.game.*
+import OtrosRodados.*
+import Pedidos.*
+
+test "cachito"{
+const cachito = new ChevroletCorsa()
+
+cachito.moveteArriba()
+cachito.moveteIzquierda()
+cachito.moveteIzquierda()
+cachito.moveteIzquierda()
+cachito.moveteDerecha()
+cachito.moveteAbajo()
+
+assert.equals(true, cachito.pasoPor(game.at(3,3)))
+assert.equals(true, cachito.pasoPorFila(3))
+//assert.equals(true, cachito.recorrioFilas([3,4]))
+
+} 

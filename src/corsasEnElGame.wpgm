@@ -1,7 +1,26 @@
 import wollok.game.*
+import OtrosRodados.*
+
+const corsa = new ChevroletCorsa()
 
 program corsasEnElGame {
-	// hacer las inicializaciones necesarias 
+	game.title("Corsa en el game")
+	
+	game.height(15)
+	game.width(15)
+	
+	game.boardGround("ruta.png")
+	
+	game.addVisual(corsa)
+	
+	keyboard.up().onPressDo{ corsa.moveteArriba()}
+	keyboard.left().onPressDo{ corsa.moveteIzquierda()} 
+	keyboard.right().onPressDo{ corsa.moveteDerecha()} 
+	keyboard.down().onPressDo{ corsa.moveteAbajo()}  
+	
+	keyboard.r().onPressDo { corsa.image("autitorojo.png") }
+	keyboard.a().onPressDo{ corsa.image("autitoazul.png") }
+	keyboard.v().onPressDo{ corsa.image("autitoverde.png") }
 	
 	game.start()
 }

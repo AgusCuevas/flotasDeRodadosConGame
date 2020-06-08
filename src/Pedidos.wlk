@@ -1,14 +1,17 @@
 import Trafic.*
 import OtrosRodados.*
+import dependencia.*
 
+
+// ETAPA 2
 class Pedidos {
 	var property distanciaKm
 	var property tiempoMaximo
 	var property cantidadDePasajeros
-	var coloresIncompatibles = []
+	var property coloresIncompatibles = []
 	
-	method agregarColoresIncomp(color){
-		coloresIncompatibles.add(color)
+	method agregarColoresIncompatibles(color){
+		return coloresIncompatibles.add(color)
 	}
 	
 	method velocidadRequerida(){
@@ -32,5 +35,9 @@ class Pedidos {
 	
 	method relajar(){
 		return tiempoMaximo + 1
+	}
+	
+	method esColorIncompatible(color){
+		return coloresIncompatibles.contains(color)
 	}
 }
